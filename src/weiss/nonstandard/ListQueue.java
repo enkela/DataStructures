@@ -130,5 +130,6 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
 
     }
 
+   //modification
 
 }
