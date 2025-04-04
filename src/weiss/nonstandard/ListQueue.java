@@ -107,5 +107,28 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
         }
 
     }
+   public void listInverse() {
+
+        ListNode<AnyType> previousPosition;
+        ListNode<AnyType> currentPosition;
+        ListNode<AnyType> nextPosition;
+
+        currentPosition = front;
+        nextPosition = currentPosition.next;
+        previousPosition = null;
+
+        while (nextPosition != null) {
+
+            currentPosition.next = previousPosition;
+            previousPosition = currentPosition;
+            currentPosition = nextPosition;
+            nextPosition = nextPosition.next;
+        }
+
+        currentPosition.next = previousPosition;
+        front = currentPosition;
+
+    }
+
 
 }
