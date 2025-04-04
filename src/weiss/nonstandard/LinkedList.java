@@ -220,9 +220,9 @@ public class LinkedList<AnyType> {
             System.out.println("Findlast: " + last.current.element);
         }
 
-//        theListClone = theList.clone();
-//        System.out.println("Printing the Cloned list");
-//        printList(theListClone);
+        theListClone = theList.clone();
+        System.out.println("Printing the Cloned list");
+        printList(theListClone);
 //
 //        LinkedList<Book> books = new LinkedList<Book>();
 //        LinkedListIterator<Book> booksItr = books.zeroth();
@@ -235,6 +235,22 @@ public class LinkedList<AnyType> {
 //        Book myFoundBook = books.findMinimum(new BookComparator<Book>());
 //        System.out.println(" myFoundBook: " + myFoundBook);
 
+    }
+    
+    //Clone method
+    public LinkedList<AnyType> clone() {
+        LinkedList<AnyType> clone = new LinkedList<AnyType>();
+        LinkedListIterator<AnyType> itr = this.first();
+        LinkedListIterator<AnyType> cloneitr = clone.zeroth();
+        if (!this.isEmpty()) {
+            while (itr.current.next != null) {
+                clone.insert(itr.current.element, cloneitr);
+                itr.advance();
+                cloneitr.advance();
+            }
+            clone.insert(itr.current.element, cloneitr);
+        }
+        return clone;
     }
 
 }
