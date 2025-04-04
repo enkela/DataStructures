@@ -1,7 +1,6 @@
 package weiss.util;
 
-import DS.Book;
-import DS.BookComparator;
+
 
 /**
  * LinkedList class implements a doubly-linked list.
@@ -342,7 +341,7 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
         return count;
     }
 
-    public boolean binarySearch(AnyType x, weiss.nonstandard.Comparator<AnyType> cmp) {
+    public boolean binarySearch(AnyType x, Comparator<AnyType> cmp) {
         int low = 0;
         int mid = 0;
         int high = theSize - 1;

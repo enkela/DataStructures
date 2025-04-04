@@ -1,6 +1,10 @@
 package weiss.nonstandard;
 
 // LinkedList class
+import DS.Book;
+import DS.BookComparator;
+import weiss.util.Comparator;
+
 //
 // CONSTRUCTION: with no initializer
 // Access is via LinkedListIterator class
@@ -104,14 +108,14 @@ public class LinkedList<AnyType> {
     public LinkedListIterator<AnyType> findLast(AnyType x) {
         ListNode<AnyType> itr = header.next;
         ListNode<AnyType> lastItr = new ListNode<AnyType>(x);
-        int counter = 0;
-        int pos = 0;
+        //int counter = 0;
+        //int pos = 0;
         while (itr != null) {
             if (itr.element.equals(x)) {
                 lastItr = itr;
-                pos = counter;
+                //  pos = counter;
             }
-            counter++;
+            //counter++;
             itr = itr.next;
         }
 
@@ -147,6 +151,21 @@ public class LinkedList<AnyType> {
             p.current.next = p.current.next.next;  // Bypass deleted node
         }
     }
+
+    // Simple print method
+    public static <AnyType> void printList(LinkedList<AnyType> theList) {
+        if (theList.isEmpty()) {
+            System.out.print("Empty list");
+        } else {
+            LinkedListIterator<AnyType> itr = theList.first();
+            for (; itr.isValid(); itr.advance()) {
+                System.out.print(itr.retrieve() + " ");
+            }
+        }
+
+        System.out.println();
+    }
+
     private ListNode<AnyType> header;
 
     // In this routine, LinkedList and LinkedListIterator are the
@@ -164,33 +183,58 @@ public class LinkedList<AnyType> {
 
     public static void main(String[] args) {
         LinkedList<Integer> theList = new LinkedList<Integer>();
+        LinkedList<Integer> theListClone = new LinkedList<Integer>();
         LinkedListIterator<Integer> theItr;
         int i;
 
         theItr = theList.zeroth();
-      //  printList(theList);
+        printList(theList);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 1; i++) {
             theList.insert(i, theItr);
-        //    printList(theList);
+//            printList(theList);
             theItr.advance();
         }
+//        for (i = 0; i < 1; i++) {
+//            theList.insert(i, theItr);
+////            printList(theList);
+//            theItr.advance();
+//        }
         System.out.println("Size was: " + listSize(theList));
 
-        for (i = 0; i < 10; i += 2) {
-            theList.remove(i);
+//        for (i = 0; i < 10; i += 2) {
+//            theList.remove(i);
+//        }
+//  delete element 2
+        //  theList.removeAll(2);
+//        for (i = 0; i < 10; i++) {
+//            if ((i % 2 == 0) == (theList.find(i).isValid())) {
+//                System.out.println("Find fails!");
+//            }
+//        }
+//
+//        System.out.println("Finished deletions");
+        printList(theList);
+        final LinkedListIterator<Integer> last = theList.findLast(3);
+        if (last.isValid()) {
+            System.out.println("Findlast: " + last.current.element);
         }
 
-        for (i = 0; i < 10; i++) {
-            if ((i % 2 == 0) == (theList.find(i).isValid())) {
-                System.out.println("Find fails!");
-            }
-        }
-
-        System.out.println("Finished deletions");
-        //printList(theList);
+//        theListClone = theList.clone();
+//        System.out.println("Printing the Cloned list");
+//        printList(theListClone);
+//
+//        LinkedList<Book> books = new LinkedList<Book>();
+//        LinkedListIterator<Book> booksItr = books.zeroth();
+//        books.insert(new Book("a", 123), booksItr);
+//        booksItr.advance();
+//        books.insert(new Book("b", 456), booksItr);
+//        booksItr.advance();
+//        books.insert(new Book("c", 789), booksItr);
+//        printList(books);
+//        Book myFoundBook = books.findMinimum(new BookComparator<Book>());
+//        System.out.println(" myFoundBook: " + myFoundBook);
 
     }
 
-   
 }

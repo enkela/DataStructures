@@ -12,55 +12,56 @@ package weiss.nonstandard;
 // void makeEmpty( )      --> Remove all items
 // ******************ERRORS********************************
 // getFront or dequeue on empty queue
-
 import weiss.util.Comparator;
-
 
 /**
  * List-based implementation of the queue.
+ *
  * @author Mark Allen Weiss
  */
-public class ListQueue<AnyType> implements Queue<AnyType>
-{
+public class ListQueue<AnyType> implements Queue<AnyType> {
+
     /**
      * Construct the queue.
      */
-    public ListQueue( )
-    {
+    public ListQueue() {
         front = back = null;
     }
 
     /**
      * Test if the queue is logically empty.
+     *
      * @return true if empty, false otherwise.
      */
-    public boolean isEmpty( )
-    {
+    public boolean isEmpty() {
         return front == null;
     }
 
     /**
      * Insert a new item into the queue.
+     *
      * @param x the item to insert.
      */
-    public void enqueue( AnyType x )
-    {
-        if( isEmpty( ) )    // Make queue of one element
-            back = front = new ListNode<AnyType>( x );
-        else                // Regular case
-            back = back.next = new ListNode<AnyType>( x );
+    public void enqueue(AnyType x) {
+        if (isEmpty()) // Make queue of one element
+        {
+            back = front = new ListNode<AnyType>(x);
+        } else // Regular case
+        {
+            back = back.next = new ListNode<AnyType>(x);
+        }
     }
 
     /**
-     * Return and remove the least recently inserted item
-     * from the queue.
+     * Return and remove the least recently inserted item from the queue.
+     *
      * @return the least recently inserted item in the queue.
      * @throws UnderflowException if the queue is empty.
      */
-    public AnyType dequeue( )
-    {
-        if( isEmpty( ) )
-            throw new UnderflowException( "ListQueue dequeue" );
+    public AnyType dequeue() {
+        if (isEmpty()) {
+            throw new UnderflowException("ListQueue dequeue");
+        }
 
         AnyType returnValue = front.element;
         front = front.next;
@@ -68,28 +69,43 @@ public class ListQueue<AnyType> implements Queue<AnyType>
     }
 
     /**
-     * Get the least recently inserted item in the queue.
-     * Does not alter the queue.
+     * Get the least recently inserted item in the queue. Does not alter the
+     * queue.
+     *
      * @return the least recently inserted item in the queue.
      * @throws UnderflowException if the queue is empty.
      */
-    public AnyType getFront( ) 
-    {
-        if( isEmpty( ) )
-            throw new UnderflowException( "ListQueue getFront" );
+    public AnyType getFront() {
+        if (isEmpty()) {
+            throw new UnderflowException("ListQueue getFront");
+        }
         return front.element;
     }
 
     /**
      * Make the queue logically empty.
      */
-    public void makeEmpty( )
-    {
+    public void makeEmpty() {
         front = null;
         back = null;
     }
 
-
     private ListNode<AnyType> front;
     private ListNode<AnyType> back;
+
+  
+   public void showElements() {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
+        ListNode<AnyType> frontQueue = front;
+        while (frontQueue != null) {
+
+            System.out.println("element:" + frontQueue.element);
+            frontQueue = frontQueue.next;
+        }
+
+    }
+
 }
