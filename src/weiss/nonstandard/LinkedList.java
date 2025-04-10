@@ -1,6 +1,7 @@
 package weiss.nonstandard;
 
 // LinkedList class
+import DS.IntComparator;
 import DS.Book;
 import DS.BookComparator;
 import weiss.util.Comparator;
@@ -190,11 +191,12 @@ public class LinkedList<AnyType> {
         theItr = theList.zeroth();
         printList(theList);
 
-        for (i = 0; i < 1; i++) {
+        for (i = 0; i < 20; i++) {
             theList.insert(i, theItr);
 //            printList(theList);
             theItr.advance();
         }
+        theList.insert(-2, theItr);
 //        for (i = 0; i < 1; i++) {
 //            theList.insert(i, theItr);
 ////            printList(theList);
@@ -206,7 +208,10 @@ public class LinkedList<AnyType> {
 //            theList.remove(i);
 //        }
 //  delete element 2
-        //  theList.removeAll(2);
+        System.out.println("Printing the list to remove 2");
+        printList(theList);
+        theList.removeAll(2);
+
 //        for (i = 0; i < 10; i++) {
 //            if ((i % 2 == 0) == (theList.find(i).isValid())) {
 //                System.out.println("Find fails!");
@@ -223,8 +228,15 @@ public class LinkedList<AnyType> {
         theListClone = theList.clone();
         System.out.println("Printing the Cloned list");
         printList(theListClone);
-//
-//        LinkedList<Book> books = new LinkedList<Book>();
+        System.out.println("Printing the minimum list");
+        LinkedList<Book> booksMin = new LinkedList<Book>();
+        LinkedListIterator<Book> booksItr = booksMin.zeroth();
+        booksMin.insert(new Book("a", 123), booksItr);
+        booksItr.advance();
+        booksMin.insert(new Book("b", 456), booksItr);
+        booksItr.advance();
+        booksMin.insert(new Book("c", 789), booksItr);
+       
 //        LinkedListIterator<Book> booksItr = books.zeroth();
 //        books.insert(new Book("a", 123), booksItr);
 //        booksItr.advance();
@@ -236,7 +248,7 @@ public class LinkedList<AnyType> {
 //        System.out.println(" myFoundBook: " + myFoundBook);
 
     }
-    
+
     //Clone method
     public LinkedList<AnyType> clone() {
         LinkedList<AnyType> clone = new LinkedList<AnyType>();
@@ -253,4 +265,18 @@ public class LinkedList<AnyType> {
         return clone;
     }
 
+
+    public void removeAll(AnyType x) {
+        LinkedListIterator<AnyType> p = first();
+        LinkedListIterator<AnyType> previous = zeroth();
+        while (p.current.next != null) {
+            if (p.current.element.equals(x)) {
+                previous.current.next = previous.current.next.next;  // Bypass deleted node
+            }
+            //System.out.println(previous.current.element);
+            p.advance();
+            previous.advance();
+        }
+
+    }
 }

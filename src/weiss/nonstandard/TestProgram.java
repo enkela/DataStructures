@@ -23,7 +23,7 @@ public class TestProgram {
         //System.out.println("LinkedList Implementation");
         //testStackList();
 //testQueueArray();
-//        testQueueList();
+        testQueueList();
 //        testLinkedList();
 
         //testBinarySearchTree();
@@ -108,6 +108,25 @@ public class TestProgram {
 
     }
 
-  
+      private static void testQueueList() {
+       ListQueue<Book> myBooks = new ListQueue<Book>();
+
+        Book b1 = new Book("A", 1000);
+        Book b2 = new Book("B", 9000);
+        Book b3 = new Book("C", 8000);
+
+        myBooks.enqueue(b1);
+        myBooks.enqueue(b2);
+        myBooks.enqueue(b3);
+
+        System.out.println("ShowElements");
+        myBooks.showElements();
+        //myBooks.showElements();
+//
+        System.out.println("Showinverse");
+        myBooks.listInverse();
+        myBooks.showElements();
+    }
+
 
 }
