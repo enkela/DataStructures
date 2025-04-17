@@ -124,8 +124,10 @@ public class TestProgram {
         //myBooks.showElements();
 //
         System.out.println("Showinverse");
-        myBooks.listInverse();
-        myBooks.showElements();
+        //myBooks.listInverse();
+        myBooks.displayReverse();
+        System.out.println("Showinverse");
+        //myBooks.showElements();
     }
 
 

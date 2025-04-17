@@ -1,7 +1,5 @@
 package weiss.util;
 
-
-
 /**
  * LinkedList class implements a doubly-linked list.
  */
@@ -471,6 +469,24 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
         }
     }
 
+    public void showList2() {
+        Node<AnyType> currentPosition = beginMarker.next;
+        for (int i = 0; i < this.theSize; i++) {
+            AnyType el = currentPosition.data;
+            System.out.println(el);
+            currentPosition = currentPosition.next;
+        }
+    }
+
+    public void showInverseList1() {
+
+        for (int i = (this.theSize)-1; i >-1; i--) {
+
+            System.out.println(getNode(i).data.toString());
+
+        }
+    }
+
     public void showInverseList() {
         Node<AnyType> currentPosition = endMarker.prev;
         for (int i = 0; i < this.theSize; i++) {
@@ -479,13 +495,14 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
             currentPosition = currentPosition.prev;
         }
     }
-     public void removeDuplicates(Comparator<AnyType> cmp) {
+
+    public void removeDuplicates(Comparator<AnyType> cmp) {
         Node<AnyType> currentPosition = beginMarker.next;
         Node<AnyType> nextPosition;
         while (currentPosition != null) {
             nextPosition = currentPosition;
-            if (nextPosition.next != null && nextPosition.next.data != null &&
-                    cmp.compare(nextPosition.next.data, currentPosition.data) == 0) {
+            if (nextPosition.next != null && nextPosition.next.data != null
+                    && cmp.compare(nextPosition.next.data, currentPosition.data) == 0) {
 
                 nextPosition.next = nextPosition.next.next;
                 nextPosition.next.prev = nextPosition;
@@ -497,6 +514,5 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
 
         }
     }
-
 
 }

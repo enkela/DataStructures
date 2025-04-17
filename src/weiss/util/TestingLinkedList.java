@@ -7,6 +7,7 @@ package weiss.util;
 
 import DS.Book;
 import DS.BookComparator;
+import weiss.nonstandard.ListStack;
 
 /**
  *
@@ -19,6 +20,7 @@ public class TestingLinkedList {
     }
 
     private static void testLinkedList() {
+        PriorityQueue<Book> myBooksQueue=new PriorityQueue<Book>();
         LinkedList<Book> myBooks = new LinkedList<Book>();
         Book b1 = new Book("B1", 9000);
         Book b2 = new Book("B2", 1000);
@@ -33,7 +35,15 @@ public class TestingLinkedList {
 
         System.out.println("Show Elements of linked list in Inverse Order");
         myBooks.showInverseList();
-
+//        myBooksQueue.add(b1);
+//        myBooksQueue.add(b2);
+//        myBooksQueue.add(b3);
+//        myBooksQueue.add(b4);
+        LinkedList<Book> myBooks1= new LinkedList<Book>(myBooks);
+        System.out.println("Show Elements of linked list using sec method");
+        myBooks.showList2();
+        System.out.println("Show Elements of linked list in Inverse Order by using sec method");
+        myBooks.showInverseList();
         myBooks.addFirst(b4);
         int a = myBooks.findOccurrences(b4, new BookComparator());
 //        myBooks.remove(b4);

@@ -129,7 +129,19 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
         front = currentPosition;
 
     }
+   
+   public void displayReverse(){
+       displayReverseRecursive( front);
+   }
 
    //modification
+
+    private void displayReverseRecursive(ListNode<AnyType> front) {
+    if (front==null){
+    return;
+    }    
+        displayReverseRecursive(front.next);
+        System.out.println("el:"+front.element);
+    }
 
 }
