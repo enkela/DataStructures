@@ -236,17 +236,11 @@ public class LinkedList<AnyType> {
         booksMin.insert(new Book("b", 456), booksItr);
         booksItr.advance();
         booksMin.insert(new Book("c", 789), booksItr);
-       
-//        LinkedListIterator<Book> booksItr = books.zeroth();
-//        books.insert(new Book("a", 123), booksItr);
-//        booksItr.advance();
-//        books.insert(new Book("b", 456), booksItr);
-//        booksItr.advance();
-//        books.insert(new Book("c", 789), booksItr);
-//        printList(books);
-//        Book myFoundBook = books.findMinimum(new BookComparator<Book>());
-//        System.out.println(" myFoundBook: " + myFoundBook);
 
+     
+      Book myFoundBook = booksMin.findMinimum(new BookComparator<Book>());
+        System.out.println(" myMinimumBook: " + myFoundBook);
+    
     }
 
     //Clone method
@@ -265,7 +259,6 @@ public class LinkedList<AnyType> {
         return clone;
     }
 
-
     public void removeAll(AnyType x) {
         LinkedListIterator<AnyType> p = first();
         LinkedListIterator<AnyType> previous = zeroth();
@@ -279,4 +272,36 @@ public class LinkedList<AnyType> {
         }
 
     }
+
+    public AnyType findMinimum(Comparator<AnyType> cmp) {
+        LinkedListIterator<AnyType> itr = first();
+        AnyType minimum = itr.current.element;
+        while (itr.current.next != null) {
+            //System.out.println(front.element);
+            if (cmp.compare(itr.current.next.element, minimum) < 0) {
+                minimum = itr.current.next.element;
+            }
+            itr.advance();
+        }
+        return minimum;
+    }
+
+    public LinkedListIterator<AnyType> findMinimumItr(Comparator<AnyType> cmp) {
+        LinkedListIterator<AnyType> itr = zeroth();
+        LinkedListIterator<AnyType> minimum = first();
+        //int counter = 0;
+        //int pos = 0;
+        while (itr.current.next != null) {
+            if (cmp.compare(itr.current.next.element, minimum.current.element) < 0) {
+                minimum = itr;
+                //  pos = counter;
+            }
+            //counter++;
+            itr.advance();
+        }
+
+        return minimum;
+
+    }
+
 }

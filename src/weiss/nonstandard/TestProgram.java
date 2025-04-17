@@ -24,7 +24,7 @@ public class TestProgram {
         //testStackList();
 //testQueueArray();
         testQueueList();
-//        testLinkedList();
+        testLinkedList();
 
         //testBinarySearchTree();
     }
@@ -52,10 +52,6 @@ public class TestProgram {
 //        ArrayStack<Book> cloneBooks = myBooks.Clone();
 //        cloneBooks.showElements();
 //
-        myBooks.showElements();
-        System.out.println("Swap after we have seen th elements");
-        myBooks.swap();
-        myBooks.showElements();
     }
 
     public static void testStackList() {
@@ -108,8 +104,8 @@ public class TestProgram {
 
     }
 
-      private static void testQueueList() {
-       ListQueue<Book> myBooks = new ListQueue<Book>();
+    private static void testQueueList() {
+        ListQueue<Book> myBooks = new ListQueue<Book>();
 
         Book b1 = new Book("A", 1000);
         Book b2 = new Book("B", 9000);
@@ -130,5 +126,26 @@ public class TestProgram {
         //myBooks.showElements();
     }
 
+    private static void testLinkedList() {
+        LinkedList<Book> myBooks = new LinkedList<Book>();
+        LinkedListIterator myBookitr= myBooks.first();
+        Book b1 = new Book("B1", 9000);
+        Book b2 = new Book("B2", 1000);
+        Book b3 = new Book("B3", 8000);
+        Book b4 = new Book("B4", 4000);
+        myBooks.insert(b4,myBookitr);
+        myBookitr.advance();
+        myBooks.insert(b3,myBookitr);
+        myBookitr.advance();
+        myBooks.insert(b2,myBookitr);
+        myBookitr.advance();
+        myBooks.insert(b1,myBookitr);
+        
+        System.out.println("Show Elements of linked list");
+      
+
+ 
+
+    }
 
 }
