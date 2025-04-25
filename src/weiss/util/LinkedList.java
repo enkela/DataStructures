@@ -480,7 +480,7 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
 
     public void showInverseList1() {
 
-        for (int i = (this.theSize)-1; i >-1; i--) {
+        for (int i = (this.theSize) - 1; i > -1; i--) {
 
             System.out.println(getNode(i).data.toString());
 
@@ -515,4 +515,117 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
         }
     }
 
+//LAb 5 EXERCISES
+//exercise 1
+    public void substitute(AnyType x, AnyType y, Comparator<AnyType> cmp) {
+        for (int i = 0; i < this.theSize; i++) {
+            Node<AnyType> p = getNode(i);
+            if (cmp.compare(p.data, x) == 0) {
+                p.data = y;
+            }
+        }
+    }
+
+    public void remove(int idx, int idx2) {
+        for (int i = idx; i <= idx2; i++) {
+            remove(idx);
+        }
+    }
+
+    public void swap(int index1, int index2) {
+        AnyType d1 = getNode(index1).data;
+        AnyType d2 = getNode(index2).data;
+        this.set(index1, d2);
+        this.set(index2, d1);
+
+    }
+
+    public void copyAndPaste(int idx, int idx2, int idx3) {
+        if (idx3 > theSize) {
+            idx3 = theSize;
+        }
+        if (idx3 > idx2) {
+            for (int i = idx; i <= idx2; i++) {
+
+                this.add(idx3, this.getNode(i).data);
+                idx3++;
+            }
+        } else {
+            for (int i = idx; i <= idx2; i = i + 2) {
+
+                this.add(idx3, this.getNode(i).data);
+                idx3++;
+                idx2++;
+            }
+        }
+
+    }
+
+    public void cutAndPaste(int idx, int idx2, int idx3) {
+        if (idx3 > theSize) {
+            idx3 = theSize;
+        }
+        if (idx3 > idx2) {
+            copyAndPaste(idx, idx2, idx3);
+            remove(idx, idx2);
+        } else {
+            int count = idx2 - idx + 1;
+            copyAndPaste(idx, idx2, idx3);
+            remove(idx + count, idx2 + count);
+        }
+
+    }
+//Exercise 6
+
+    public void cutAndPasteIntoList(int idx1, int idx2, int idx3, LinkedList<AnyType> list2) {
+        for (int i = idx1; i <= idx2; i = i++) {
+
+            list2.add(idx3, getNode(i).data);
+        }
+        remove(idx1, idx2);
+    }
+
+    //Exercise 7
+    public void cutAndPasteIntoListReverse(int idx1, int idx2, int idx3, LinkedList<AnyType> list2) {
+        idx3++;
+        for (int i = idx1; i <= idx2; i = i++) {
+            list2.add(idx3, getNode(i).data);
+        }
+        remove(idx1, idx2);
+    }
+        //Exercise 8
+      public void moveAtTheEnd(AnyType x, Comparator<AnyType> cmp){        int initialSize = this.theSize;
+        int index = 0;
+        for(int i = 0;i<initialSize-1;i=index){
+        if(cmp.compare(getNode(i).data,x)==0){
+        this.cutAndPaste(i, i, this.theSize-1);
+        initialSize--;
+        index=i;
+        continue;
+        }        index++;        }    }
+    //Exercise 9
+    public void moveLargerAtTheFront(AnyType x, Comparator<AnyType> cmp){
+        for(int i = 0;i<this.theSize;i++){
+        if(cmp.compare(getNode(i).data,x)>0){
+            AnyType temp = getNode(i).data;
+            remove(i);
+            addFirst(temp);
+        }
+    }
+    }
+    //Exercise 10
+    
+
+       public void surround (AnyType x, AnyType y, AnyType z, Comparator<AnyType> cmp){
+        int index = 0;
+        for(int i=0;i < this.theSize;i=index){
+            if(cmp.compare(getNode( i ).data,x)==0){
+                add(i,y);
+                add(i+2,z);                
+                index = i + 3; /// jump one element
+                continue;
+            }
+        index++;
+        }
+    }
 }
