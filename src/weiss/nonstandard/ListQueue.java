@@ -93,8 +93,7 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
     private ListNode<AnyType> front;
     private ListNode<AnyType> back;
 
-  
-   public void showElements() {
+    public void showElements() {
         if (isEmpty()) {
             System.out.println("List is empty");
             return;
@@ -107,7 +106,8 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
         }
 
     }
-   public void listInverse() {
+
+    public void listInverse() {
 
         ListNode<AnyType> previousPosition;
         ListNode<AnyType> currentPosition;
@@ -129,19 +129,40 @@ public class ListQueue<AnyType> implements Queue<AnyType> {
         front = currentPosition;
 
     }
-   
-   public void displayReverse(){
-       displayReverseRecursive( front);
-   }
 
-   //modification
-
-    private void displayReverseRecursive(ListNode<AnyType> front) {
-    if (front==null){
-    return;
-    }    
-        displayReverseRecursive(front.next);
-        System.out.println("el:"+front.element);
+    public void displayReverse() {
+        displayReverseRecursive(front);
     }
 
+    //modification
+    private void displayReverseRecursive(ListNode<AnyType> front) {
+        if (front == null) {
+            return;
+        }
+        displayReverseRecursive(front.next);
+        System.out.println("el:" + front.element);
+    }
+
+    public void increasePriority(AnyType el) {
+        if (front.element.equals(el)) {
+            return;
+        }
+        ListNode<AnyType> previous = null;
+        ListNode<AnyType> current = front;
+        while (current != null) {
+            if (current.element.equals(el)) {
+                if (previous != null) {
+                    previous.next = current.next;
+                }
+                if (current == back) {
+                    back = previous;
+                }
+                current.next = front;
+                front = current;
+                return;
+            }
+            previous = current;
+            current = current.next;
+        }
+    }
 }

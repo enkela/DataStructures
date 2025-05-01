@@ -51,7 +51,8 @@ public class TestingLinkedList {
         myBooks.showList();
         System.out.println("Show Elements of linked list after removin from first to third,3 elemnts of the list");
         System.out.println("----------------------------------------------------");
-        myBooks.remove(1, 3);
+       // myBooks.moveLargerAtTheFrontUKPERAJ(b7, new BookComparator<Book>());
+       myBooks.swap(1,2);
         myBooks.showList();
 //        System.out.println("----------------------------------------------------");
 //        System.out.println("Swapin book b6 with b7");

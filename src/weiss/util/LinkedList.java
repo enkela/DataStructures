@@ -593,39 +593,115 @@ public class LinkedList<AnyType> extends AbstractCollection<AnyType> implements 
         }
         remove(idx1, idx2);
     }
-        //Exercise 8
-      public void moveAtTheEnd(AnyType x, Comparator<AnyType> cmp){        int initialSize = this.theSize;
+    //Exercise 8
+
+    public void moveAtTheEnd(AnyType x, Comparator<AnyType> cmp) {
+        int initialSize = this.theSize;
         int index = 0;
-        for(int i = 0;i<initialSize-1;i=index){
-        if(cmp.compare(getNode(i).data,x)==0){
-        this.cutAndPaste(i, i, this.theSize-1);
-        initialSize--;
-        index=i;
-        continue;
-        }        index++;        }    }
-    //Exercise 9
-    public void moveLargerAtTheFront(AnyType x, Comparator<AnyType> cmp){
-        for(int i = 0;i<this.theSize;i++){
-        if(cmp.compare(getNode(i).data,x)>0){
-            AnyType temp = getNode(i).data;
-            remove(i);
-            addFirst(temp);
+        for (int i = 0; i < initialSize - 1; i = index) {
+            if (cmp.compare(getNode(i).data, x) == 0) {
+                this.cutAndPaste(i, i, this.theSize - 1);
+                initialSize--;
+                index = i;
+                continue;
+            }
+            index++;
         }
     }
+
+    //Exercise 9
+    public void moveLargerAtTheFront(AnyType x, Comparator<AnyType> cmp) {
+        for (int i = 0; i < this.theSize; i++) {
+            if (cmp.compare(getNode(i).data, x) > 0) {
+                AnyType temp = getNode(i).data;
+                remove(i);
+                addFirst(temp);
+            }
+        }
     }
     //Exercise 10
-    
 
-       public void surround (AnyType x, AnyType y, AnyType z, Comparator<AnyType> cmp){
+    public void surround(AnyType x, AnyType y, AnyType z, Comparator<AnyType> cmp) {
         int index = 0;
-        for(int i=0;i < this.theSize;i=index){
-            if(cmp.compare(getNode( i ).data,x)==0){
-                add(i,y);
-                add(i+2,z);                
+        for (int i = 0; i < this.theSize; i = index) {
+            if (cmp.compare(getNode(i).data, x) == 0) {
+                add(i, y);
+                add(i + 2, z);
                 index = i + 3; /// jump one element
                 continue;
             }
-        index++;
+            index++;
         }
     }
+
+    public void cutAndPasteIntoListQosja(int index1, int index2, int index3) {
+        LinkedList<AnyType> temp = new LinkedList<>();
+        for (int i = index1; i < index2; i++) {
+            temp.add(getNode(i).data);
+        }
+//    Node<AnyType> newNode = new Node<>();  
+//    insertAfter.next = newNode;  
+//    insertBefore.prev = newNode;  
+//    insertAfter = newNode;  
+//    list2.theSize++;  
+        // }  
+    }
+
+//    public void moveLargerAtTheFrontQosja(AnyType  list, Comparator<AnyType> cmp) {
+//        Iterator<AnyType> itr = this.iterator();
+//        LinkedList<AnyType> larger = new LinkedList<>();
+//        while (itr.hasNext()) {
+//            AnyType current = itr.next();
+//            if (cmp.compare(current, list) > 0) {
+//                larger.add(current);
+//            }
+//            itr.remove();
+//        }
+//        this.addLast( larger);
+//    }
+//}
+
+public void swapQosja(int index1, int index2) {  
+    AnyType data1 = getNode(index1).data;  
+    Node<AnyType> node2 = getNode(index2);  
+    this.set(index1, node2.data);  
+  
+}
+ public void MoveLargerAtTheFrontAlushi(AnyType x, Comparator<AnyType> cmp) {
+    Node<AnyType> current = beginMarker;
+    while (current != null) {
+        Node next = current.next;
+        if (cmp.compare(current.data, x) > 0) {
+            remove(current);
+            addFirst(current.data);
+        }
+        current = next;
+    }
+}
+ public void swapUkperaj(int index1, int index2) {
+    if (index1 == index2) return;
+    Node<AnyType> node1 = getNode(index1);
+    Node<AnyType> node2 = getNode(index2);
+    if (node1 == null || node2 == null) return;
+    AnyType temp = node1.data;
+    node1.data = node2.data;
+    node2.data = temp;
+}
+ public void moveLargerAtTheFrontUKPERAJ(AnyType x, Comparator<AnyType> cmp) {
+    Node<AnyType> current = beginMarker;
+    while (current != null) {
+        Node next = current.next;
+        if (cmp.compare(current.data, x) > 0) {
+            if (current.prev != null) current.prev.next = current.next;
+            if (current.next != null) current.next.prev = current.prev;
+            if (current == endMarker) endMarker = current.prev;
+
+            current.next = beginMarker;
+            current.prev = null;
+            if (beginMarker != null) beginMarker.prev = current;
+            beginMarker = current;
+        }
+        current = next;
+    }
+}
 }

@@ -124,4 +124,37 @@ public class ListStack<AnyType> implements Stack<AnyType> {
         }
         inverseStack.showElements();
     }
+      public void decreasePriorityQosja(AnyType el) {  
+    if (top().equals(el)) return;  
+    ListStack<AnyType> tempStack = new ListStack<>();  
+    boolean found = false;  
+    while (!isEmpty()) {  
+      AnyType topElement = top(); pop();  
+      if (topElement.equals(el)) {  
+        found = true; break;  
+      } else {  
+        tempStack.push(topElement);  
+      }  
+    }  
+    if (found) push(el);  
+    while (!tempStack.isEmpty()) {  
+      push(tempStack.top());  
+      tempStack.pop();  
+    
+  }  
+}
+      public void decreasePriorityAlushi(AnyType el) {
+    ListStack<AnyType> tempStack = new ListStack<AnyType>();
+    while (!this.isEmpty()) {
+        AnyType top = this.top();
+        if (!top.equals(el)) {
+            tempStack.push(top);
+        }
+    }
+
+    this.push(el);
+    while (!tempStack.isEmpty()) {
+        this.push(tempStack.topAndPop());
+    }
+}
 }

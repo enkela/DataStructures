@@ -21,10 +21,10 @@ public class TestProgram {
         //System.out.println("Array Implementation");
         //testStackArray();
         //System.out.println("LinkedList Implementation");
-        //testStackList();
+        testStackList();
 //testQueueArray();
         testQueueList();
-        testLinkedList();
+        //testLinkedList();
 
         //testBinarySearchTree();
     }
@@ -42,8 +42,7 @@ public class TestProgram {
         myBooks.push(b3);
         myBooks.push(b4);
 
-        System.out.println("ShowElements");
-        // myBooks.showElements();
+       
 
 //        System.out.println("Showinverse");
 //        myBooks.showInverse();
@@ -68,9 +67,9 @@ public class TestProgram {
         System.out.println("ShowElements");
         myBooks.showElements();
         //myBooks.showElements();
-//
-        System.out.println("Showinverse");
-        myBooks.showInverse();
+     //  ListStack<Book> myBooks1=decreasePriorityQosja(b2);
+        System.out.println("Show el after decrease");
+       myBooks.showElements();
 //
 //        System.out.println("Clone");
 //        ListStack<Book> cloneBooks = myBooks.Clone();
@@ -119,11 +118,11 @@ public class TestProgram {
         myBooks.showElements();
         //myBooks.showElements();
 //
-        System.out.println("Showinverse");
+        System.out.println("Showafter increase");
         //myBooks.listInverse();
-        myBooks.displayReverse();
+        myBooks.increasePriority(b2);
         System.out.println("Showinverse");
-        //myBooks.showElements();
+        myBooks.showElements();
     }
 
     private static void testLinkedList() {
