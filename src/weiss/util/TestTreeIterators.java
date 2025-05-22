@@ -1,3 +1,4 @@
+
 import java.util.NoSuchElementException;
 
 import weiss.nonstandard.Stack;
