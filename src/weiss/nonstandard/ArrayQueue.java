@@ -130,60 +130,7 @@ public class ArrayQueue<AnyType> implements Queue<AnyType>
     }
 
 
-    //// Exercises
-
-    public void showElements()
-    {
-        int temp = front;
-        for( int i = 0; i < currentSize; i++, front = increment( front ) )
-            System.out.println(theArray[front].toString());
-        front = temp;
-    }
-
-    public void showInverse()
-    {
-        int temp = back;
-        for( int i = currentSize; i > 0; i--, back = decrement(back) )
-            System.out.println(theArray[back].toString());
-        back = temp;
-    }
-
-        private int decrement( int x )
-    {
-        if( x == 0 )
-            x = theArray.length -1;
-        else
-            x--;
-        return x;
-    }
     
-    
-    public ArrayQueue<AnyType> clone()
-    {
-        int temp = front;
-        ArrayQueue<AnyType> clone = new ArrayQueue<AnyType>(theArray.length);
-
-        for( int i = 0; i < currentSize; i++, front = increment(front) )
-            clone.enqueue(theArray[front]);
-        front = temp;
-        return clone;
-    }
-
-    public AnyType findMinimum(BookComparator cmp )
-    {
-        int temp = front;
-        AnyType minimum = theArray[front];
-        //front = increment( front );
-        //ComparatorAny<AnyType> cmp = new ComparatorAny<AnyType>();
-        for( int i = 0; i < currentSize; i++, front = increment( front ) )
-        {
-            if(cmp.compare(theArray[front],minimum)<0)
-                minimum = theArray[front];
-        }
-        front = temp;
-        return minimum;
-    }
-
     private AnyType [ ] theArray;
     private int         currentSize;
     private int         front;
