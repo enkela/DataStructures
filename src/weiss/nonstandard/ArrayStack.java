@@ -106,49 +106,7 @@ public class ArrayStack<AnyType> implements Stack<AnyType>
             newArray[ i ] = theArray[ i ];
         theArray = newArray;
     }
-//Exercises Lab1
 
-    //ShowElements: shows all the elements in the stack
-
-    public void showElements() {
-        for (int i = 0; i < topOfStack + 1; i++) {
-            System.out.println((AnyType)theArray[i].toString());
-        }
-    }
-    //ShowInverse: show the elements in inverse order.
-    public void showInverse() {
-        for (int i = topOfStack; i >= 0; i--) {
-            System.out.println((AnyType)theArray[i].toString());
-        }
-    }
-    /* New constructor which specifies size of stack (for the
-        array implementation) as parameter.
-*/
-    public ArrayStack(int capacity){
-        theArray = (AnyType[]) new Object[capacity];
-        topOfStack = -1;
-    }
-
-
-    public ArrayStack<AnyType> Clone() {
-        AnyType[] cloneArray = (AnyType[]) new Object[theArray.length];
-        for (int i = 0; i < topOfStack + 1; i++){
-            cloneArray[i] = theArray[i];
-        }
-        ArrayStack<AnyType> clone = new ArrayStack<AnyType>();
-        clone.theArray = cloneArray;
-        clone.topOfStack = topOfStack;
-        return clone;
-    }
-
-
-
-    public void swap(){
-        AnyType temp;
-        temp = theArray[topOfStack-1];
-        theArray[topOfStack-1] = theArray[topOfStack];
-        theArray[topOfStack] = temp;
-    }
 
     private AnyType [ ] theArray;
     private int         topOfStack;
